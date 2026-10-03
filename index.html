@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Prototype: shared peak-hour commute groups with zero-commission pricing, built around Namma Yatri's open model.">
+<title>Namma Pass prototype: shared peak-hour commutes on Namma Yatri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head>
+<body><main>
+<h1>Namma Pass: shared peak-hour commutes</h1>
+<p class="lead">A prototype by Muhammed Sirfan C for Namma Yatri. Simulated riders travel from five Bengaluru areas to a tech park on the Outer Ring Road between 7:00 and 10:00. The engine groups them, caps every rider's extra travel time, and splits the fare. The driver collects every seat fare, about 1.4 times a solo trip, and there is no commission.</p>
+
+<div class="card ctl">
+<label>Riders on the corridor: <b id="vN"></b><input id="n" type="range" min="40" max="300" step="10" value="250"></label>
+<label>Max extra travel time: <b id="vC"></b><input id="c" type="range" min="8" max="30" step="1" value="15"></label>
+<label>Vehicle<select id="v"><option value="3">Auto (3 riders)</option><option value="4">Cab (4 riders)</option></select></label>
+<label>Employer pays<select id="e"><option value="0">0% (rider pays)</option><option value="50">50% of the fare</option><option value="100">100% (travel benefit)</option></select></label>
+<button id="r" type="button">New set of riders</button>
+</div>
+
+<div class="kpis" id="kpis"></div>
+
+<div class="split">
+<div class="card"><h2>Corridor map (simulated, not to scale)</h2><svg id="map" viewBox="0 0 380 360" role="img" aria-label="Map of riders, groups and the selected route"></svg>
+<div class="note" style="margin-top:6px">Coloured dots are grouped riders. Grey rings are riders who could not be placed. The yellow star is the tech park.</div></div>
+<div class="card"><h2>Groups formed <span id="gc" style="color:var(--mute);font-weight:400"></span></h2><ul class="list" id="list"></ul></div>
+</div>
+
+<div class="card" style="margin-top:12px"><h2 id="dt"></h2><div class="wrap"><table id="tb"></table></div></div>
+
+<p class="note">Service runs only in the peak windows, 7:00 to 10:00 and 15:00 to 18:00; drivers take normal rides the rest of the day. Assumptions: 18 km/h peak speed, 1.3 road factor, 3 minutes wait per stop, solo fare = ₹30 + ₹8 per road km (to be replaced with the live fare engine), seat price = 1.4 ÷ riders × solo fare (35% in a group of 4, 47% in a group of 3), the driver collects every seat fare, driver subscription ₹25 a day for autos and ₹90 for cabs (public reports, to be replaced with live values), 22 days and 44 trips a month. 3 and 6-month plans lock the fare rather than discount it. All riders are synthetic. This is an independent prototype, not an official Namma Yatri product.</p>
+</main>
+<script src="js/app.js"></script></body></html>
